@@ -3,10 +3,10 @@ import TaskItem from "./TaskItem";
 
 function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
   return (
-    <div className="task-list">
+    <div className="space-y-4">
       {tasks.map((task) => (
         <TaskItem
-          key={task.id}
+          key={task._id}
           task={task}
           onUpdate={onUpdateTask}
           onDelete={onDeleteTask}
