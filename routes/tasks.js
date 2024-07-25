@@ -19,6 +19,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: "Invalid task ID" });
+    }
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+    res.json(task);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 // Create a new task
 router.post("/", async (req, res) => {
   const task = new Task({
