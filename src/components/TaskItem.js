@@ -5,6 +5,9 @@ function TaskItem({ task, onUpdate, onDelete }) {
   const [editedTitle, setEditedTitle] = useState(task.title);
   const [editedDescription, setEditedDescription] = useState(task.description);
   const [editedStatus, setEditedStatus] = useState(task.status);
+  const [editedDueDate, setEditedDueDate] = useState(
+    task.dueDate ? new Date(task.dueDate).toISOString().split("T")[0] : ""
+  );
 
   const handleUpdate = () => {
     onUpdate(task._id, {
@@ -12,8 +15,13 @@ function TaskItem({ task, onUpdate, onDelete }) {
       title: editedTitle,
       description: editedDescription,
       status: editedStatus,
+      dueDate: editedDueDate,
     });
     setIsEditing(false);
+  };
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString();
   };
 
   if (isEditing) {
@@ -38,6 +46,12 @@ function TaskItem({ task, onUpdate, onDelete }) {
           <option value="In Progress">In Progress</option>
           <option value="Done">Done</option>
         </select>
+        <input
+          type="date"
+          value={editedDueDate}
+          onChange={(e) => setEditedDueDate(e.target.value)}
+          className="w-full p-2 mb-2 border rounded"
+        />
         <div className="flex mt-2 gap-1">
           <button
             onClick={handleUpdate}
@@ -59,6 +73,14 @@ function TaskItem({ task, onUpdate, onDelete }) {
       <h3 className="text-lg font-bold">{task.title}</h3>
       <p>{task.description}</p>
       <p className="text-sm text-gray-500">Status: {task.status}</p>
+      {task.dueDate && (
+        <p className="text-sm text-gray-500">
+          Due Date: {formatDate(task.dueDate)}
+        </p>
+      )}
+      {task.reminder && (
+        <p className="text-sm text-red-500 font-bold mt-2">{task.reminder}</p>
+      )}
       <div className="flex mt-2 gap-1">
         <button
           onClick={() => setIsEditing(true)}
@@ -67,7 +89,7 @@ function TaskItem({ task, onUpdate, onDelete }) {
         </button>
         <button
           onClick={() => onDelete(task._id)}
-          className="bg-red-500 text-white p-2 rounded">
+          className="bg-red-300 text-white p-2 rounded">
           Delete
         </button>
       </div>

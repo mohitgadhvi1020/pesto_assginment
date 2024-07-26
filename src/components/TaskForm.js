@@ -4,6 +4,7 @@ function TaskForm({ onSubmit }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("To Do");
+  const [dueDate, setDueDate] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,10 +12,11 @@ function TaskForm({ onSubmit }) {
       alert("Title is required");
       return;
     }
-    onSubmit({ title, description, status });
+    onSubmit({ title, description, status, dueDate });
     setTitle("");
     setDescription("");
     setStatus("To Do");
+    setDueDate("");
   };
 
   return (
@@ -41,6 +43,12 @@ function TaskForm({ onSubmit }) {
         <option value="In Progress">In Progress</option>
         <option value="Done">Done</option>
       </select>
+      <input
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+        className="w-full p-2 border rounded"
+      />
       <button type="submit" className="bg-green-500 text-white p-2 rounded">
         Add Task
       </button>
