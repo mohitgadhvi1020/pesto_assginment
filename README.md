@@ -1,5 +1,9 @@
 # Task Management Application
 
+# For FE - https://github.com/mohitgadhvi1020/pesto_assginment/tree/frontend
+
+# For BE - https://github.com/mohitgadhvi1020/pesto_assginment/tree/master
+
 ## Introduction
 
 This is a full-stack task management application that allows users to create, update, and delete tasks. Users can view a list of tasks and filter them by status. The application is built using [Frontend Framework] for the front-end and [Backend Technology] for the back-end, with [Database] as the database.
