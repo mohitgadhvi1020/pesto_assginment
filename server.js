@@ -11,7 +11,9 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
-const tasksRouter = require("./routes/tasks"); // Make sure this line is correct
+const tasksRouter = require("./routes/tasks");
+const authRouter = require("./routes/auth");
+const userRouter = require("./routes/User");
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
@@ -44,7 +46,9 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Use the tasks router
-app.use("/api/tasks", tasksRouter); // This line should be correct now
+app.use("/api/auth", authRouter);
+app.use("/api/tasks", tasksRouter);
+app.use("/api/users", userRouter);
 
 app.use(errorHandler);
 // Start server
