@@ -6,7 +6,7 @@
 
 ## Introduction
 
-This is a full-stack task management application that allows users to create, update, and delete tasks. Users can view a list of tasks and filter them by status. The application is built using [Frontend Framework] for the front-end and [Backend Technology] for the back-end, with [Database] as the database.
+This is a full-stack task management application that allows users to create, update, and delete tasks. Users can view a list of tasks and filter them by status. The application is built using React for the front-end and NodeJs for the back-end, with MongoDB as the database.
 
 ## Features
 
